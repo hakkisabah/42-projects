@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:57:07 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/11 23:39:19 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/01/13 14:56:05 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	wrong_format_srv(char **argv)
 void	server_success(void)
 {
 	ft_putstr_fd("\033[94mPID\033[0m \033[96m->\033[0m", 1);
-	ft_putstr_fd(ft_itoa(getpid()), 1);
+	ft_putnbr_fd(getpid(),1);
 	ft_putstr_fd("\n\033[90mWaiting for a message...\033[0m\n", 1);
 }
 

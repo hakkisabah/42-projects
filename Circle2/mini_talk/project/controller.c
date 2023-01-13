@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:12:55 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/11 23:16:03 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/01/13 14:20:52 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_signals(void (handler)(int signal, siginfo_t *info, void *context))
 
 	s_sigaction.sa_sigaction = handler;
 	s_sigaction.sa_flags = SA_SIGINFO;
+	sigemptyset(&s_sigaction.sa_mask);
 	if (sigaction(SIGUSR1, &s_sigaction, NULL) == -1)
 		handle_errors("Failed to change SIGUSR1's behavior");
 	if (sigaction(SIGUSR2, &s_sigaction, NULL) == -1)
