@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 01:40:52 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/30 23:24:57 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/01/30 23:31:27 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
 	t_program program;
 
 	ft_check_arg(argc, argv);
-	ft_init_struct(&program, 0);
+	ft_init_struct(&program, 1);
 	ft_validate_map(argv, &program);
     program.mlx = mlx_init();
-    program.window = ft_new_window(&program, "So Long");
+    program.window = ft_new_window(&program, "So Long Bonus");
 	define_frames(&program);
 
 	mlx_hook(program.window.reference, 2, 1L << 0, *ft_input, &program); // 1L << 0 KeyPressMask

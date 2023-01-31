@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 01:42:17 by hsabah            #+#    #+#             */
-/*   Updated: 2023/02/01 00:05:37 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/01 00:05:09 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "minilibx_opengl/mlx.h"
@@ -35,7 +35,7 @@
 #  define S_KEY					1
 #  define D_KEY					2
 #  define W_KEY					13
-#  define ESC_KEY 				53
+#  define ESC_KEY				53
 
 # else
 #  define LEFT_KEY				65361

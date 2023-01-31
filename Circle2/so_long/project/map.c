@@ -6,11 +6,30 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:25:32 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/25 22:11:50 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:20:57 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_map(char **solution, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(solution[i]);
+		i++;
+	}
+	free(solution);
+}
+
+void	map_not_equal_to_program(void)
+{
+	ft_putstr_fd("Map is not equal to program\n", 1);
+	exit(0);
+}
 
 char	*ft_join(char *line, char c)
 {
@@ -33,7 +52,7 @@ char	*ft_join(char *line, char c)
 	return (str);
 }
 
-int	ft_is_line(char *line)
+static int	ft_is_line(char *line)
 {
 	int	i;
 

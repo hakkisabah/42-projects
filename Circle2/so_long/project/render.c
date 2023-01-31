@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 22:00:40 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/26 01:22:34 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/01 00:02:33 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ t_image	ft_img(void *mlx, char *path)
 	return (img);
 }
 
-void	ft_put_common(void *mlx,t_window *window, void *frame)
+/*
+** ft_put_common function put all images except player
+*/
+
+static void	ft_put_common(void *mlx,t_window *window, void *frame)
 {
 	int position_x;
 	int position_y;
@@ -32,7 +36,12 @@ void	ft_put_common(void *mlx,t_window *window, void *frame)
 		frame, position_x, position_y);
 }
 
-void	ft_put_player(void *mlx,t_window *window)
+/*
+** ft_put_player function put the player image
+** also it saves the player position in the game structure current position
+*/
+
+static void	ft_put_player(void *mlx,t_window *window)
 {
 	int position_x;
 	int position_y;
@@ -45,7 +54,7 @@ void	ft_put_player(void *mlx,t_window *window)
 		window->game.frames.P.reference, position_x, position_y);
 }
 
-void	ft_fill_window(void *mlx, t_window *window)
+void	ft_fill_window(void *mlx, t_window *window, int is_bonus)
 {
 	char map_pixel;
 
@@ -65,7 +74,11 @@ void	ft_fill_window(void *mlx, t_window *window)
 			if (map_pixel == 'E')
 				ft_put_common(mlx, window, window->game.frames.E.reference);				
 			if (map_pixel == '0')
-				ft_put_common(mlx, window, window->game.frames.F.reference);				
+				ft_put_common(mlx, window, window->game.frames.F.reference);
+			if (map_pixel == 'K' && is_bonus)
+				ft_put_common(mlx, window, window->game.frames.K.reference);
+			else if (map_pixel == 'K' && !is_bonus)
+				map_not_equal_to_program();
 			window->game.frame_position.x++;
 		}
 		window->game.frame_position.y++;

@@ -6,7 +6,7 @@
 #    By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 13:50:54 by hsabah            #+#    #+#              #
-#    Updated: 2023/01/22 17:34:53 by hsabah           ###   ########.fr        #
+#    Updated: 2023/01/30 14:55:39 by hsabah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,9 @@ LIBFTPATH		= libft
 
 NAME		= so_long
 HEADER		= so_long.h
+
+BNAME		= so_long_bonus
+BHEADER		= so_long_bonus.h
 
 # For MacOS
 MINILIBX	= minilibx/
@@ -34,7 +37,7 @@ ECHO		= echo
 OPENGL		= -framework OpenGL -framework AppKit
 
 # For MacOS
-MINILIBXCC	= -I mlx -L lib/minilibx -lmlx
+MINILIBXCC	= -I mlx -L minilibx -lmlx
 # For Linux
 ifeq ($(OS),Linux)
     MINILIBXCC	= -lmlx -lXext -lX11 -lm -lbsd
@@ -47,23 +50,39 @@ endif
 
 ALLFILES = $(wildcard *.c)
 
-ALLOBJ			=	$(ALLFILES:.c=.o)
+MANDATORYFILES	= $(filter-out so_long_bonus.c, $(ALLFILES))
+BONUSFILES		= $(filter-out so_long.c, $(ALLFILES))
+
+MANDATORYOBJ	=	$(MANDATORYFILES:.c=.o)
+BONUSOBJ		=	$(BONUSFILES:.c=.o)
 
 start:
 			@make all
 
 all:		$(NAME)
 
-$(NAME):	$(ALLOBJ)
+$(NAME):	$(MANDATORYOBJ)
 			@make -s -C $(MINILIBX)
 			@make -C $(LIBFTPATH)
 			@make bonus -C $(LIBFTPATH)
 			@cp $(LIBFTPATH)/libft.a .
-			@$(CC) $(CFLAGS) $(ALLOBJ) $(HEADER) $(COMPILEPRM) libft.a -o $(NAME)
+			@$(CC) $(CFLAGS) $(MANDATORYOBJ) $(HEADER) $(COMPILEPRM) libft.a -o $(NAME)
+
+bonus:		$(BNAME)
+
+$(BNAME):	$(BONUSOBJ)
+			@make -s -C $(MINILIBX)
+			@make -C $(LIBFTPATH)
+			@make bonus -C $(LIBFTPATH)
+			@cp $(LIBFTPATH)/libft.a .
+			@$(CC) $(CFLAGS) $(BONUSOBJ) $(BHEADER) $(COMPILEPRM) libft.a -o $(BNAME)
 
 
 clean:
-			@$(RM) -r $(ALLOBJ)
+			@$(RM) -r $(MANDATORYOBJ)
+			@$(RM) -r $(NAME)
+			@$(RM) -r $(BONUSOBJ)
+			@$(RM) -r $(BNAME)
 			@make clean -C $(MINILIBX)
 			@make clean -C $(LIBFTPATH)
 
