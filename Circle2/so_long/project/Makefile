@@ -44,8 +44,10 @@ ifeq ($(OS),Linux)
 endif
 
 COMPILEPRM	= $(MINILIBXCC) $(OPENGL) -o $(NAME) libft.a $(MINILIBX)/libmlx.a
+COMPILEPRMB	= $(MINILIBXCC) $(OPENGL) -o $(BNAME) libft.a $(MINILIBX)/libmlx.a
 ifeq ($(OS),Linux)
 COMPILEPRM	= $(HEADER) $(MINILIBXCC) libft.a -o $(NAME)
+COMPILEPRMB = $(BHEADER) $(MINILIBXCC) libft.a -o $(BNAME)
 endif
 
 ALLFILES = $(wildcard *.c)
@@ -75,8 +77,7 @@ $(BNAME):	$(BONUSOBJ)
 			@make -C $(LIBFTPATH)
 			@make bonus -C $(LIBFTPATH)
 			@cp $(LIBFTPATH)/libft.a .
-			@$(CC) $(CFLAGS) $(BONUSOBJ) $(BHEADER) $(COMPILEPRM) libft.a -o $(BNAME)
-
+			@$(CC) $(CFLAGS) $(BONUSOBJ) $(COMPILEPRMB)
 
 clean:
 			@$(RM) -r $(MANDATORYOBJ)
