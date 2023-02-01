@@ -36,7 +36,8 @@ static void	check_player_for_enemy(t_program *program, int enemy_x, int enemy_y)
 ** swap_enemy function will swap the enemy position
 ** when triggered, the enemy will move to the right
 ** when triggered again, the enemy will move to the left
-** and while moving to the left, it will check if the player is in the same position
+** and while moving to the left, it will check 
+** if the player is in the same position
 */
 
 static void	swap_enemy(t_program *program, int is_enemy)
@@ -44,7 +45,7 @@ static void	swap_enemy(t_program *program, int is_enemy)
 	int			i;
 	int			x;
 	int			y;
-	
+
 	i = 0;
 	while (i < program->window.game.enemies_coordinates[i])
 	{
@@ -82,22 +83,23 @@ static void	ft_enemy_animate(t_program *program)
 
 int	ft_input(int key, void *param)
 {
-	t_program	*program = (t_program *)param;
-	
-	mlx_clear_window(program->mlx, program->window.reference);
+	t_program	*program;
 
+	program = (t_program *)param;
+	mlx_clear_window(program->mlx, program->window.reference);
 	if (key == ESC_KEY)
 		ft_close(program);
-	if ((key == RIGHT_KEY || key == D_KEY) || (key == LEFT_KEY || key == A_KEY) 
+	if ((key == RIGHT_KEY || key == D_KEY) || (key == LEFT_KEY || key == A_KEY)
 		|| (key == DOWN_KEY || key == S_KEY) || (key == UP_KEY || key == W_KEY))
 		return (ft_movements_keyhooks(key, program, program->is_bonus));
 	return (0);
 }
 
-int	ft_update (void *param)
+int	ft_update(void *param)
 {
-	t_program	*program = (t_program *)param;
+	t_program	*program;
 
+	program = (t_program *)param;
 	ft_fill_window(program->mlx, &program->window, program->is_bonus);
 	if (program->is_bonus)
 	{

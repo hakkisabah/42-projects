@@ -25,7 +25,8 @@ static void	set_enemy_position(t_game *game)
 
 	k = 0;
 	i = 0;
-	game->enemies_coordinates = (int *)malloc((game->map_height * game->map_width) * sizeof(int));
+	game->enemies_coordinates = (int *)malloc(
+			(game->map_height * game->map_width) * sizeof(int));
 	while (i < game->map_height)
 	{
 		j = 0;
@@ -44,8 +45,10 @@ static void	set_enemy_position(t_game *game)
 }
 
 /*
-** set_player_position function will set the player coordinates
-** coordinates usable while map path correction in the solution with find_path function
+** set_player_position function will 
+** set the player coordinates
+** coordinates usable while map path correction 
+** in the solution with find_path function
 */
 
 static void	set_player_position(t_game *game)
@@ -84,7 +87,8 @@ void	set_solution_map_to_zero(t_game *game)
 	int		j;
 
 	i = 0;
-	game->solution = malloc((game->map_height * game->map_width) * sizeof(char *));
+	game->solution = malloc(
+			(game->map_height * game->map_width) * sizeof(char *));
 	while (i < game->map_height)
 	{
 		j = 0;
@@ -105,8 +109,8 @@ void	set_solution_map_to_zero(t_game *game)
 
 static void	ft_validate_map_path(t_game *game)
 {
-	int	W;
-	int	K;
+	int	w;
+	int	k;
 	int	x;
 	int	y;
 
@@ -115,29 +119,31 @@ static void	ft_validate_map_path(t_game *game)
 	while (x < game->map_width)
 	{
 		y = 0;
-		W = 0;
-		K = 0;
+		w = 0;
+		k = 0;
 		while (y < game->map_height && x != (game->map_width - 1))
 		{
 			if (game->map[y][x] == '1')
-				W++;
+				w++;
 			if (game->map[y][x] == 'K')
-				K++;
+				k++;
 			y++;
 		}
-		ft_path_is_ok(W, K, game->map_height);
+		ft_path_is_ok(w, k, game->map_height);
 		x++;
 	}
 	set_player_position(game);
 	set_solution_map_to_zero(game);
-	find_path(game);
 }
 
 /*
-** buffer[ft_strlen(buffer) - 1] != '\n' prevent possible error for map layout
-** because calculation the height of the map is based on the number of '\n' easily
-** you will see in ft_check_map function for increment the height of the map
-** and ft_check_map function will check if the map is rectangular or needed calculation
+** buffer[ft_strlen(buffer) - 1] != '\n' prevent 
+** possible error for map layout
+** because calculation the height of the map is based 
+** on the number of '\n' easily you will see in 
+** ft_check_map function for increment the height of the map
+** and ft_check_map function will check if the map is 
+** rectangular or needed calculation
 */
 
 void	ft_validate_map(char **argv, t_program *program)
@@ -162,6 +168,7 @@ void	ft_validate_map(char **argv, t_program *program)
 	ft_check_map(buffer, program);
 	ft_validate_map_path(&program->window.game);
 	set_enemy_position(&program->window.game);
+	find_path(&program->window.game);
 	free(buffer);
 	close(fd);
 }

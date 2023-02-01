@@ -57,12 +57,14 @@ static int	ft_is_line(char *line)
 	int	i;
 
 	i = 0;
-	if (!line){
+	if (!line)
+	{
 		return (0);
 	}
 	while (line[i])
 	{
-		if (line[i] == '\0'){
+		if (line[i] == '\0')
+		{
 			return (1);
 		}
 		i++;

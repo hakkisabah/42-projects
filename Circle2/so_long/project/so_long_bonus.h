@@ -49,7 +49,7 @@
 #  define ESC_KEY				65307
 # endif
 
-typedef struct	s_size
+typedef struct s_size
 {
 	int	x;
 	int	y;
@@ -67,12 +67,12 @@ typedef struct s_image
 
 typedef struct s_frames
 {
-	t_image		P;
-	t_image		C;
-	t_image		E;
-	t_image		W;
-	t_image		F;
-	t_image		K;
+	t_image		p;
+	t_image		c;
+	t_image		e;
+	t_image		w;
+	t_image		f;
+	t_image		k;
 }				t_frames;
 
 typedef struct s_game
@@ -94,60 +94,59 @@ typedef struct s_game
 	t_size		frame_position;
 }				t_game;
 
-typedef struct	s_window 
+typedef struct s_window
 {
 	void		*reference;
 	t_size		size;
 	t_game		game;
 }				t_window;
 
-typedef struct	s_program 
+typedef struct s_program
 {
 	void		*mlx;
 	t_window	window;
 	int			is_bonus;
 }				t_program;
 
-
-void	ft_check_arg(int argc, char **argv);
-void	ft_check_component(char *buffer, t_game *game);
-void	ft_check_y_limits(t_game *game);
-void	ft_check_x_limits(t_game *game);
-void	ft_check_map(char *buffer, t_program *program);
-
-int		ft_map_availability(char **map, int y, int x, t_program *program);
-int		ft_redirect_player(char *curr, char *redirected);
-
-int		ft_input(int key, void *param);
-int		ft_update (void *param);
-
-void	ft_put_display(t_program *program);
-int		ft_movements_keyhooks(int key, t_program *program, int is_bonus);
-
-void	free_map(char **solution, int height);
-void	map_not_equal_to_program(void);
-char	*ft_join(char *line, char c);
-char	*ft_get_map(int fd);
-
-void	ft_init_struct(t_program *program, int is_bonus);
-void	define_frames(t_program *program);
-void	ft_reset_program(t_program program);
-
-void	find_path(t_game *game);
-
-t_image	ft_img(void *mlx, char *path);
-void	ft_fill_window(void *mlx, t_window *window, int is_bonus);
-
-void	ft_is_map_char(char c);
-void	ft_limits_error(void);
-void	ft_file_is_open(int fd);
-void	ft_small_map(t_game *game);
-void	ft_path_is_ok(int W, int K, int y);
-
-void	set_solution_map_to_zero(t_game *game);
-void	ft_validate_map(char **argv, t_program *program);
-
-int			ft_close(t_program *program);
 t_window	ft_new_window(t_program *program, char *name);
+int			ft_close(t_program *program);
+
+void		ft_check_arg(int argc, char **argv);
+void		ft_check_component(char *buffer, t_game *game);
+void		ft_check_y_limits(t_game *game);
+void		ft_check_x_limits(t_game *game);
+void		ft_check_map(char *buffer, t_program *program);
+
+int			ft_map_availability(char **map, int y, int x, t_program *program);
+int			ft_redirect_player(char *curr, char *redirected);
+
+int			ft_input(int key, void *param);
+int			ft_update(void *param);
+
+void		ft_put_display(t_program *program);
+int			ft_movements_keyhooks(int key, t_program *program, int is_bonus);
+
+void		free_map(char **solution, int height);
+void		map_not_equal_to_program(void);
+char		*ft_join(char *line, char c);
+char		*ft_get_map(int fd);
+
+void		ft_init_struct(t_program *program, int is_bonus);
+void		define_frames(t_program *program);
+void		ft_reset_program(t_program program);
+
+void		find_path(t_game *game);
+
+t_image		ft_img(void *mlx, char *path);
+void		ft_fill_window(void *mlx, t_window *window, int is_bonus);
+
+void		ft_is_map_char(char c);
+void		ft_limits_error(void);
+void		ft_file_is_open(int fd);
+void		ft_small_map(t_game *game);
+void		ft_path_is_ok(int W, int K, int y);
+
+void		set_solution_map_to_zero(t_game *game);
+void		ft_validate_map(char **argv, t_program *program);
 
 #endif

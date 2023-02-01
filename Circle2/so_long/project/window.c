@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int ft_close(t_program *program)
+int	ft_close(t_program *program)
 {
 	mlx_clear_window(program->mlx, program->window.reference);
 	mlx_destroy_window(program->mlx, program->window.reference);
@@ -24,7 +24,7 @@ t_window	ft_new_window(t_program *program, char *name)
 {
 	program->window.size.x = program->window.game.map_width * ANIMATION_FRAMES;
 	program->window.size.y = program->window.game.map_height * ANIMATION_FRAMES;
-    program->window.reference = mlx_new_window(program->mlx, program->window.size.x, program->window.size.y, name);
-
+	program->window.reference = mlx_new_window(program->mlx,
+			program->window.size.x, program->window.size.y, name);
 	return (program->window);
 }
