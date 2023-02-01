@@ -36,8 +36,7 @@ static int	is_logic_solving(t_game *game, int r, int c, char **solution)
 {
 	if (r >= 0 && c >= 0 && r < game->map_height && c < game->map_width
 		&& solution[r][c] == '0' && game->map[r][c] != 'K'
-		&& game->map[r][c] == '0'
-		&& is_count_limit(game, count))
+		&& game->map[r][c] == '0')
 		return (1);
 	return (0);
 }

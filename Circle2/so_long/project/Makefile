@@ -37,15 +37,15 @@ ECHO		= echo
 OPENGL		= -framework OpenGL -framework AppKit
 
 # For MacOS
-MINILIBXCC	= -I mlx -L minilibx -lmlx
+MINILIBXCC	= -I mlx -L $(MINILIBX) -lmlx
 # For Linux
 ifeq ($(OS),Linux)
     MINILIBXCC	= -lmlx -lXext -lX11 -lm -lbsd
 endif
 
-COMPILEPRM	= $(MINILIBXCC) $(OPENGL)
+COMPILEPRM	= $(MINILIBXCC) $(OPENGL) -o $(NAME) libft.a $(MINILIBX)/libmlx.a
 ifeq ($(OS),Linux)
-COMPILEPRM	= $(MINILIBXCC)
+COMPILEPRM	= $(HEADER) $(MINILIBXCC) libft.a -o $(NAME)
 endif
 
 ALLFILES = $(wildcard *.c)
@@ -66,7 +66,7 @@ $(NAME):	$(MANDATORYOBJ)
 			@make -C $(LIBFTPATH)
 			@make bonus -C $(LIBFTPATH)
 			@cp $(LIBFTPATH)/libft.a .
-			@$(CC) $(CFLAGS) $(MANDATORYOBJ) $(HEADER) $(COMPILEPRM) libft.a -o $(NAME)
+			@$(CC) $(CFLAGS) $(MANDATORYOBJ) $(COMPILEPRM)
 
 bonus:		$(BNAME)
 

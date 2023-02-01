@@ -14,7 +14,7 @@
 # define SO_LONG_BONUS_H
 
 # if defined(__APPLE__) && defined(__MACH__)
-#  include "minilibx_opengl/mlx.h"
+#  include "minilibx/mlx.h"
 # else
 #  include "minilibx-linux/mlx.h"
 # endif
