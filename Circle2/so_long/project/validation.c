@@ -76,30 +76,27 @@ static void	set_player_position(t_game *game)
 	exit(0);
 }
 
-/*
-** set_solution_map_to_zero function will set the solution map to zero
-** its needed to find the path in the map and use rat in a maze algorithm
-*/
-
-void	set_solution_map_to_zero(t_game *game)
+char	**copy_map(t_game *game)
 {
-	int		i;
-	int		j;
+	int		y;
+	int		x;
+	char	**v_map;
 
-	i = 0;
-	game->solution = malloc(
+	y = 0;
+	v_map = malloc(
 			(game->map_height * game->map_width) * sizeof(char *));
-	while (i < game->map_height)
+	while (y < game->map_height)
 	{
-		j = 0;
-		game->solution[i] = malloc((game->map_width) * sizeof(char));
-		while (j < game->map_width)
+		x = 0;
+		v_map[y] = malloc((game->map_width) * sizeof(char));
+		while (x < game->map_width)
 		{
-			game->solution[i][j] = '0';
-			j++;
+			v_map[y][x] = game->map[y][x];
+			x++;
 		}
-		i++;
+		y++;
 	}
+	return (v_map);
 }
 
 /*
@@ -133,7 +130,6 @@ static void	ft_validate_map_path(t_game *game)
 		x++;
 	}
 	set_player_position(game);
-	set_solution_map_to_zero(game);
 }
 
 /*

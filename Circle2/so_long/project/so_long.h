@@ -78,7 +78,6 @@ typedef struct s_frames
 typedef struct s_game
 {
 	char		**map;
-	char		**solution;
 	int			map_width;
 	int			map_height;
 	int			collectibles;
@@ -89,6 +88,7 @@ typedef struct s_game
 	int			*enemies_coordinates;
 	int			exit_y;
 	int			exit_x;
+	char		end_c;
 	int			moves_total;
 	t_frames	frames;
 	t_size		frame_position;
@@ -135,6 +135,9 @@ void		ft_init_struct(t_program *program, int is_bonus);
 void		define_frames(t_program *program);
 void		ft_reset_program(t_program program);
 
+int			solvemaze(t_game *game, int r, int c, char **solution);
+char		**set_solution_map_to_zero(t_game *game);
+int			access_to_collectibles(t_game *game, char **v_map);
 void		find_path(t_game *game);
 
 t_image		ft_img(void *mlx, char *path);
@@ -146,7 +149,7 @@ void		ft_file_is_open(int fd);
 void		ft_small_map(t_game *game);
 void		ft_path_is_ok(int W, int K, int y);
 
-void		set_solution_map_to_zero(t_game *game);
+char		**copy_map(t_game *game);
 void		ft_validate_map(char **argv, t_program *program);
 
 #endif

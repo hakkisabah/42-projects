@@ -36,17 +36,18 @@ static int	is_logic_solving(t_game *game, int r, int c, char **solution)
 {
 	if (r >= 0 && c >= 0 && r < game->map_height && c < game->map_width
 		&& solution[r][c] == '0' && game->map[r][c] != 'K'
-		&& game->map[r][c] == '0')
+		&& (game->map[r][c] == '0' || game->map[r][c] == 'C'
+			|| game->map[r][c] == 'E'))
 		return (1);
 	return (0);
 }
 
-static int	solvemaze(t_game *game, int r, int c, char **solution)
+int	solvemaze(t_game *game, int r, int c, char **solution)
 {
 	static int	count;
 
 	count++;
-	if (game->map[r][c] == 'E')
+	if (game->map[r][c] == game->end_c)
 	{
 		solution[r][c] = '1';
 		return (1);
@@ -78,25 +79,50 @@ static int	solvemaze(t_game *game, int r, int c, char **solution)
 ** in the map
 */
 
+char	**set_solution_map_to_zero(t_game *game)
+{
+	int		i;
+	int		j;
+	char	**v_map;
+
+	i = 0;
+	v_map = malloc(
+			(game->map_height * game->map_width) * sizeof(char *));
+	while (i < game->map_height)
+	{
+		j = 0;
+		v_map[i] = malloc((game->map_width) * sizeof(char));
+		while (j < game->map_width)
+		{
+			v_map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	return (v_map);
+}
+
 void	find_path(t_game *game)
 {
-	int	player_to_exit;
-	int	y;
-	int	x;
+	int		player_to_exit;
+	int		is_collectibles;
+	char	**e_map;
 
-	y = game->player_y;
-	x = game->player_x;
+	game->end_c = 'P';
+	is_collectibles = access_to_collectibles(game, copy_map(game));
 	game->map[game->player_y][game->player_x] = '0';
-	player_to_exit = solvemaze(game, y, x, game->solution);
-	if (player_to_exit)
+	game->end_c = 'E';
+	e_map = set_solution_map_to_zero(game);
+	player_to_exit = solvemaze(game, game->player_y, game->player_x, e_map);
+	if (player_to_exit && is_collectibles)
 	{
 		game->map[game->player_y][game->player_x] = 'P';
-		free_map(game->solution, game->map_height);
+		free_map(e_map, game->map_height);
 	}
 	else
 	{
 		ft_putstr_fd("Error!\nPath is not valid in the map!\n", 1);
-		free_map(game->solution, game->map_height);
+		free_map(e_map, game->map_height);
 		exit(0);
 	}
 }
