@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:11:28 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/26 00:43:49 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/05 08:37:23 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 size_t	ft_strlen(const char *s);
 void	ft_putnbr_fd(int n, int fd);
 
+void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *c, int fd);

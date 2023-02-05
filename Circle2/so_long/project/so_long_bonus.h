@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 01:42:17 by hsabah            #+#    #+#             */
-/*   Updated: 2023/02/01 00:05:09 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/06 01:57:03 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,34 @@ typedef struct s_frames
 	t_image		k;
 }				t_frames;
 
+typedef struct s_map_directions
+{
+	int			east;
+	int			west;
+	int			north;
+	int			south;
+	int			p_and_c_total;
+}				t_map_directions;
+
 typedef struct s_game
 {
-	char		**map;
-	int			map_width;
-	int			map_height;
-	int			collectibles;
-	int			exit;
-	int			player;
-	int			player_x;
-	int			player_y;
-	int			*enemies_coordinates;
-	int			exit_y;
-	int			exit_x;
-	int			moves_total;
-	t_frames	frames;
-	t_size		frame_position;
-}				t_game;
+	char				**map;
+	int					**solution;
+	int					map_width;
+	int					map_height;
+	int					collectibles;
+	int					exit;
+	int					player;
+	int					player_x;
+	int					player_y;
+	int					*enemies_coordinates;
+	int					exit_y;
+	int					exit_x;
+	int					moves_total;
+	t_frames			frames;
+	t_size				frame_position;
+	t_map_directions	map_directions;
+}						t_game;
 
 typedef struct s_window
 {
@@ -106,6 +117,8 @@ typedef struct s_program
 	t_window	window;
 	int			is_bonus;
 }				t_program;
+
+void		err_msg(char *msg);
 
 t_window	ft_new_window(t_program *program, char *name);
 int			ft_close(t_program *program);
@@ -125,7 +138,8 @@ int			ft_update(void *param);
 void		ft_put_display(t_program *program);
 int			ft_movements_keyhooks(int key, t_program *program, int is_bonus);
 
-void		free_map(char **solution, int height);
+void		free_map(int **solution, int height);
+void		free_map_c(char **solution, int height);
 void		map_not_equal_to_program(void);
 char		*ft_join(char *line, char c);
 char		*ft_get_map(int fd);
@@ -135,12 +149,13 @@ void		define_frames(t_program *program);
 void		ft_reset_program(t_program program);
 
 int			solvemaze(t_game *game, int r, int c, char **solution);
-char		**set_solution_map_to_zero(t_game *game);
 int			access_to_collectibles(t_game *game, char **v_map);
 void		find_path(t_game *game);
 
 t_image		ft_img(void *mlx, char *path);
 void		ft_fill_window(void *mlx, t_window *window, int is_bonus);
+
+void		set_solution_map_to_int(t_game *game);
 
 void		ft_is_map_char(char c);
 void		ft_limits_error(void);
@@ -148,7 +163,6 @@ void		ft_file_is_open(int fd);
 void		ft_small_map(t_game *game);
 void		ft_path_is_ok(int W, int K, int y);
 
-char		**copy_map(t_game *game);
 void		ft_validate_map(char **argv, t_program *program);
 
 #endif

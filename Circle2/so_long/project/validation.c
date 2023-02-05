@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 23:46:09 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/31 22:51:35 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/05 19:34:39 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	set_enemy_position(t_game *game)
 ** in the solution with find_path function
 */
 
-static void	set_player_position(t_game *game)
+static void	set_player_positions(t_game *game)
 {
 	int	i;
 	int	j;
@@ -66,37 +66,16 @@ static void	set_player_position(t_game *game)
 			{
 				game->player_x = j;
 				game->player_y = i;
-				return ;
+			}
+			if (game->map[i][j] == 'E')
+			{
+				game->exit_x = j;
+				game->exit_y = i;
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_putstr_fd("Error\nPlayer position not found\n", 1);
-	exit(0);
-}
-
-char	**copy_map(t_game *game)
-{
-	int		y;
-	int		x;
-	char	**v_map;
-
-	y = 0;
-	v_map = malloc(
-			(game->map_height * game->map_width) * sizeof(char *));
-	while (y < game->map_height)
-	{
-		x = 0;
-		v_map[y] = malloc((game->map_width) * sizeof(char));
-		while (x < game->map_width)
-		{
-			v_map[y][x] = game->map[y][x];
-			x++;
-		}
-		y++;
-	}
-	return (v_map);
 }
 
 /*
@@ -129,7 +108,7 @@ static void	ft_validate_map_path(t_game *game)
 		ft_path_is_ok(w, k, game->map_height);
 		x++;
 	}
-	set_player_position(game);
+	set_player_positions(game);
 }
 
 /*

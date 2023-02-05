@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:21:06 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/30 22:02:05 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/06 01:57:03 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	ft_init_struct(t_program *program, int is_bonus)
 	program->window.game.player_x = 0;
 	program->window.game.player_y = 0;
 	program->window.game.moves_total = 0;
+	program->window.game.map_directions.east = 0;
+	program->window.game.map_directions.west = 0;
+	program->window.game.map_directions.north = 0;
+	program->window.game.map_directions.south = 0;
+	program->window.game.map_directions.p_and_c_total = 0;
 	program->is_bonus = is_bonus;
 }
 
@@ -49,6 +54,6 @@ void	ft_reset_program(t_program program)
 	free(program.window.game.frames.w.pixels);
 	free(program.window.game.frames.f.pixels);
 	free(program.window.game.frames.k.pixels);
-	free_map(program.window.game.map, program.window.game.map_height);
+	free_map_c(program.window.game.map, program.window.game.map_height);
 	ft_close(&program);
 }

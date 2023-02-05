@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:34:01 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/31 13:17:34 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/04 12:51:16 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ int	ft_movements_keyhooks(int key, t_program *program, int is_bonus)
 	curr_map = program->window.game.map;
 	if ((key == RIGHT_KEY || key == D_KEY)
 		&& ft_map_availability(curr_map, y, x + 1, program))
-	is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y][x + 1]);
+		is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y][x + 1]);
 	else if ((key == LEFT_KEY || key == A_KEY)
 		&& ft_map_availability(curr_map, y, x - 1, program))
-	is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y][x - 1]);
+		is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y][x - 1]);
 	else if ((key == DOWN_KEY || key == S_KEY)
 		&& ft_map_availability(curr_map, y + 1, x, program))
-	is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y + 1][x]);
+		is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y + 1][x]);
 	else if ((key == UP_KEY || key == W_KEY)
 		&& ft_map_availability(curr_map, y - 1, x, program))
-	is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y - 1][x]);
+		is_move = ft_redirect_player(&curr_map[y][x], &curr_map[y - 1][x]);
 	ft_is_move(program, is_move, is_bonus);
 	return (0);
 }

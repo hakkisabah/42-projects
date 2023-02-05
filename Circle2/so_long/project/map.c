@@ -6,24 +6,11 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:25:32 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/31 13:20:57 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:21:41 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(char **solution, int height)
-{
-	int	i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(solution[i]);
-		i++;
-	}
-	free(solution);
-}
 
 void	map_not_equal_to_program(void)
 {
