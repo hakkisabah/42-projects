@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:27:53 by hsabah            #+#    #+#             */
-/*   Updated: 2023/02/01 00:27:34 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/09 14:08:29 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	ft_check_arg(int argc, char **argv)
 {
 	int	argvlen;
 
-	argvlen = ft_strlen(argv[1]);
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\nInvalid number of arguments. Must be 2.\n", 1);
 		exit (0);
 	}
+	argvlen = ft_strlen(argv[1]);
 	if (!ft_strnstr(argv[1], ".ber", argvlen))
 	{
 		ft_putstr_fd("Error\nInvalid file type. Must be: \"<name>.ber\"\n", 1);

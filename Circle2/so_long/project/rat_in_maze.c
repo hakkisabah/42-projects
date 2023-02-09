@@ -6,18 +6,11 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 14:55:10 by hsabah            #+#    #+#             */
-/*   Updated: 2023/02/06 01:51:35 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:10:22 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*
-** find_path function will find the path from 
-** the player position to the exit
-** position and will mark the path with '1' in the 
-** solution map.
-*/
 
 static int	seek_map(t_game *game, int y, int x)
 {
@@ -47,6 +40,13 @@ static int	seek_map(t_game *game, int y, int x)
 	}
 	return (1);
 }
+
+/*
+** find_path function will find the path from 
+** the player position to the exit
+** position and will mark the path with '1' in the 
+** solution map.
+*/
 
 void	find_path(t_game *game)
 {
