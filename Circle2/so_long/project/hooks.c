@@ -6,7 +6,7 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:19:11 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/31 18:34:38 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/09 20:03:07 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	ft_input(int key, void *param)
 	t_program	*program;
 
 	program = (t_program *)param;
-	mlx_clear_window(program->mlx, program->window.reference);
 	if (key == ESC_KEY)
 		ft_close(program);
 	if ((key == RIGHT_KEY || key == D_KEY) || (key == LEFT_KEY || key == A_KEY)

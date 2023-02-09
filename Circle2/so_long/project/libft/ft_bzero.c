@@ -6,11 +6,11 @@
 /*   By: hsabah <hakkisabah@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:43:56 by hsabah            #+#    #+#             */
-/*   Updated: 2023/01/22 17:44:16 by hsabah           ###   ########.fr       */
+/*   Updated: 2023/02/09 20:06:13 by hsabah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
