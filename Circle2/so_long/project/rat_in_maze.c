@@ -26,32 +26,25 @@ static int	seek_map(t_game *game, int y, int x)
 	if (is_valid_frame(game->map[y][x + 1], game->solution[y][x + 1]))
 	{
 		game->solution[y][x + 1] = game->solution[y][x] + 1;
-		game->map_directions.east = seek_map(game, y, x + 1);
+		seek_map(game, y, x + 1);
 	}
 	if (is_valid_frame(game->map[y + 1][x], game->solution[y + 1][x]))
 	{
 		game->solution[y + 1][x] = game->solution[y][x] + 1;
-		game->map_directions.south = seek_map(game, y + 1, x);
+		seek_map(game, y + 1, x);
 	}
 	if (is_valid_frame(game->map[y][x - 1], game->solution[y][x - 1]))
 	{
 		game->solution[y][x - 1] = game->solution[y][x] + 1;
-		game->map_directions.west = seek_map(game, y, x - 1);
+		seek_map(game, y, x - 1);
 	}
 	if (is_valid_frame(game->map[y - 1][x], game->solution[y - 1][x]))
 	{
 		game->solution[y - 1][x] = game->solution[y][x] + 1;
-		game->map_directions.north = seek_map(game, y - 1, x);
+		seek_map(game, y - 1, x);
 	}
 	return (1);
 }
-
-/*
-** find_path function will find the path from 
-** the player position to the exit
-** position and will mark the path with '1' in the 
-** solution map.
-*/
 
 void	find_path(t_game *game)
 {
@@ -63,7 +56,7 @@ void	find_path(t_game *game)
 	game->map_directions.seeker.y = game->exit_y;
 	map_is_seeked = seek_map(game, game->exit_y, game->exit_x);
 	if (!map_is_seeked)
-		err_msg("Error\nNo path to the exit\n");
+		err_msg("Error\nFatal error, check the rat_in_maze.c file!\n");
 	if (game->map_directions.p_and_c_total != game->collectibles + 1)
 		err_msg("Error\nMap is not reachable!\n");
 	ft_putstr_fd("Map is seeked\n", 1);

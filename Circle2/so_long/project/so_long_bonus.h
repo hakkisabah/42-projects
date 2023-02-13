@@ -35,7 +35,7 @@
 #  define S_KEY					1
 #  define D_KEY					2
 #  define W_KEY					13
-#  define ESC_KEY				53
+#  define ESC_KEY 				53
 
 # else
 #  define LEFT_KEY				65361
@@ -82,6 +82,7 @@ typedef struct s_map_directions
 	int			north;
 	int			south;
 	int			p_and_c_total;
+	t_size		seeker;
 }				t_map_directions;
 
 typedef struct s_game
