@@ -31,10 +31,10 @@ static char	**argv_to_args(int argc, char **argv)
 
 	i = 1;
 	j = 0;
-	args = malloc(sizeof(char *) * argc);
+	args = malloc(sizeof(char *) * argc + 1);
 	while (i < argc)
 		args[j++] = argv[i++];
-	args[j] = '\0';
+	args[j] = NULL;
 	return (args);
 }
 
