@@ -46,11 +46,8 @@ $(NAME): $(MANDATORYOBJ)
 	@$(CC) $(CFLAGS) $(MANDATORYOBJ) libft.a -o $(NAME)
 	@echo "Push_swap is ready to use"
 
-bonus: $(BONUSOBJ)
-	@make -C $(LIBFTPATH)
-	@cp $(LIBFTPATH)/libft.a .
-	@$(CC) $(CFLAGS) $(BONUSOBJ) libft.a -o $(NAME)
-	@echo "Push_swap is ready to use"
+bonus: 
+	@echo "not ready yet!"
 
 clean: 
 			@make clean -C $(LIBFTPATH)
@@ -68,42 +65,6 @@ fclean: 	clean
 
 re: 		fclean all
 			@echo "Cleaned and rebuilt everything"
-
-test2:				$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-100 -n 2))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
-
-test3:				$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-100 -n 3))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
-
-test5:				$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 5))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
-
-test100:			$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 100))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
-
-test500:			$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 500))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
-
-test1000:			$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 1000))
-					./push_swap $(ARG) | $(CHECKER_EX) $(ARG)
-					@echo -n "Moves: "
-					@./push_swap $(ARG) | wc -l
 
 .PHONY:		all clean fclean re
 
